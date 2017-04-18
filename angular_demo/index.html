@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .main{
+            margin:40px;
+        }
+    </style>
+</head>
+<body ng-controller="con">
+
+<div  style="height: 50px;line-height: 50px;margin-right: 50px">
+    <div class="form-inline pull-right topBtn">
+        <button class="btn btn-warning" ui-sref="listA">列表</button>
+        <button class="btn btn-primary" ui-sref="add">添加</button>
+    </div>
+</div>
+<div ui-view="" class="main"></div>
+
+</div>
+<script src="js/angular.js"></script>
+<script src="js/angular-ui-router.js"></script>
+<script src="app.js"></script>
+<script>
+    app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $stateProvider
+                .state("listA",{  // listA状态名  和 ui-sref="listA" 一致
+                    url:"/list",  //  /list哈希值
+                    templateUrl:"List.html"
+                })
+                .state("add",{
+                    url:"/add",
+                    templateUrl:"add.html"
+                })
+                .state("edit",{
+                        url:"/edit2",
+                    templateUrl:"add.html"
+                })
+                .state("editAdd",{
+                        url:"/editAdd",
+                    templateUrl:"List.html"
+                })
+          $urlRouterProvider.otherwise("/list"); //默认显示页
+    }])
+
+    app.controller("con",function($http,$scope){
+
+        $http.get("data.json").success(function(data){
+           // console.log(data) //渲染列表
+            $scope.list = data.list.data.datas;
+
+            //删除
+            $scope.del = function(item) {
+                if(window.confirm("确定要删除该条信息?")) {
+                    $scope.list.splice($scope.list.indexOf(item),1);
+                }
+            }
+
+            //编辑
+            $scope.edit = function(item){
+                $scope.formData.id = item.id;
+                $scope.formData.name = item.name;
+                $scope.formData.age = item.age;
+                $scope.formData.sex = item.sex;
+                $scope.formData.address = item.address;
+               // $scope.mode = item;
+
+            }
+            //提交信息
+            $scope.formData = {
+                name: "",
+                age: "",
+                sex: "",
+                address: ""
+            };
+            $scope.sub = function(){
+                var data={
+                        id:$scope.formData.id,
+                        name : $scope.formData.name,
+                        age : $scope.formData.age,
+                        sex : $scope.formData.sex,
+                        address :$scope.formData.address
+                    }
+               // $scope.list.push(data);
+
+              // $scope.list[item] = data;
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style type="text/css">
+        div{
+            width:100px;
+            height: 100px;
+            background: pink;
+        }
+        .ng-hide {
+            width:100%;
+            height:100px;
+            background:red;
+            transition:all 5s;
+            /*transform:rotate(360deg);*/
+        }
+
+
+        </style>
+</head>
+<body>
+
+<body>
+    <input type="checkbox" ng-model="myCheck">
+
+
+    <div ng-hide="myCheck"></div>
+
+ </body>
+
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular-animate.min.js"></script>
+
+<script>
+    var app = angular.module('myApp', ['ngAnimate']);
+
+
+</script>
+
+</body>
+</html>

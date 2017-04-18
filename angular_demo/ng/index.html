@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .main{
+            margin:40px;
+        }
+    </style>
+</head>
+<body ng-controller="con">
+<div  style="height: 50px;line-height: 50px;margin-right: 50px">
+    <div class="form-inline pull-right topBtn">
+        <button class="btn btn-warning" ui-sref="listA">列表</button>
+        <button class="btn btn-primary" ui-sref="add" ng-click="add()">添加</button>
+    </div>
+</div>
+<div ui-view="" class="main"></div>
+
+</div>
+<script src="js/angular.js"></script>
+<script src="js/angular-ui-router.js"></script>
+<script src="app.js"></script>
+<script>
+    app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $stateProvider
+                .state("listA",{  // listA状态名  和 ui-sref="listA" 一致
+                    url:"/list",  //  /list哈希值
+                    templateUrl:"List.html"
+                })
+                .state("add",{
+                    url:"/add",
+                    templateUrl:"add.html"
+                })
+                .state("edit",{
+                        url:"/edit",
+                    templateUrl:"add.html"
+                })
+                .state("editAdd",{
+                        url:"/editAdd",
+                    templateUrl:"List.html"
+                })
+          $urlRouterProvider.otherwise("/list"); //默认显示页
+    }])
+
+    app.controller("con",function($http,$scope){
+        var editMode = 1;
+        var addMode = -1;
+        $http.get("data.json").success(function(data){
+           // console.log(data) //渲染列表
+            $scope.list = data.list.data.datas;
+        })
+            //删除
+            $scope.del = function(item) {
+                if(window.confirm("确定要删除该条信息?")) {
+                    $scope.list.splice($scope.list.indexOf(item),1);
+                }
+            }
+
+            $scope.add = function(){
+                //$broadcast将事件向下传播到所有子作用域，包括自己.只能向child controller传递event与data
+                $scope.$broadcast("controller.add");
+            }
+            $scope.edit = function(index) {
+                $scope.$broadcast("controller.edit", {
+                    formData: $scope.list[index],
+                    index: index
+                });
+            }
+
+            //$on用于接收event与data
+            $scope.$on("controller.add", function(event, data) {
+                $scope.mode = addMode;
+                $scope.formData.name = "";
+                $scope.formData.age = "";
+                $scope.formData.sex = "";
+                $scope.formData.address = "";
+            });
+            $scope.$on("controller.edit", function(event,e) {
+                $scope.mode = e.index;
+                $scope.formData.name = e.formData.name;
+                $scope.formData.age = e.formData.age;
+                $scope.formData.sex = e.formData.sex;
+                $scope.formData.address = e.formData.address;
+            });
+            //提交信息
+            $scope.sub = function(){
+                var data= {
+                        formData: {
+                            name: $scope.formData.name,
+                            age: $scope.formData.age,
+                            sex: $scope.formData.sex,
+                            address: $scope.formData.address
+                        }
+                    }
+                if($scope.mode != addMode) {
+                    data.index = $scope.mode;
+                    //$emit将事件向上传播到所有子作用域，包括自己。只能向parent controller传递event与data
+                    $scope.$emit("controller.editData", data);
+                } else {
+                    $scope.$emit("controller.addData", data);
+                }
+
+            }
+            $scope.$on("controller.addData", function(event, e) {
+                var formData = e.formData;
+                $scope.list.push(formData);
+            });
+            $scope.$on("controller.editData", function(event, e) {
+                var formData = e.formData;
+                $scope.list[e.index] = formData;
+            });
+
+    })
+
+</script>
+</body>
+</html>

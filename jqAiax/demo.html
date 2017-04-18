@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tbody></tbody>
+    </table>
+    <script src="../lib/jquery.js"></script>
+    <script>
+        var btn =[{langCode:"zh"},{langCode:"en"}];
+
+        var btnAll = [];
+        for(var i=0;i<btn.length;i++){
+            btnAll.push("<button>"+btn[i].langCode+"</button>")
+        }
+        console.log(btnAll);
+
+        function bindData(data){
+            var html = "";
+            for(var i=0;i<data.length;i++){
+                html+="<tr>";
+                html+="<td>"+data[i].name+"</td>";
+                html+="<td dataId="+data[i].id+">"+btnAll.join(' ')+"</td>";
+                html+="</tr>";
+            }
+            $("tbody").append(html);
+        }
+        $.ajax({
+            url:"../lib/data.json",
+            type:"get",
+            success:function(d){
+                var data = d.list.data.datas;
+                bindData(data);
+
+            }
+        })
+    </script>
+</body>
+</html>

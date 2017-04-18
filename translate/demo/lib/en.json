@@ -1,0 +1,8 @@
+{
+  "name":"Name",
+  "sex":"Sex",
+  "age":"Age",
+  "address":"Address",
+  "save":"Save changes",
+  "cancel":"cancel"
+}

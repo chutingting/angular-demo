@@ -1,0 +1,125 @@
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin-bottom: 0;
+}
+.checktree-root .list-group-item{
+	padding:0;
+	border:none;
+}
+
+ul.checktree-root .tree-col{
+   position: relative;
+   left: -20px;
+   width: 0px;
+   display: inline-block;
+}
+.list-group-item:first-child {
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.list-group-item:last-child {
+  margin-bottom: 0;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.list-group-item {
+  padding: 15px;
+  border: 1px solid #eff2f7;
+}
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #eff2f7;
+}
+ul.checktree-root .tree-col{
+   position: relative;
+   left: -20px;
+   width: 0px;
+   display: inline-block;
+}
+.glyphicon {
+  color: #777777;
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-minus:before {
+  content: "\2212";
+}
+.ui-checkbox {
+  position: relative;
+  margin: 0 20px 10px 20px;
+}
+label {
+  display: inline-block;
+  /* max-width: 100%; */
+  margin-bottom: 5px;
+  padding-right:5px;
+  font-weight: bold;
+}
+.ui-checkbox input[type="checkbox"] {
+    display: none;
+}
+input[type="radio"], input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+.ui-checkbox input[type="checkbox"] + span {
+    font-weight: normal;
+}
+.ui-checkbox input[type="checkbox"]:checked + span:before {
+    background-color: #1C7EBB;
+    border: 1px solid #1C7EBB;
+}
+.ui-checkbox input[type="checkbox"] + span:before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-left: -20px;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+.ui-checkbox input[type="checkbox"]:checked + span:after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 7px;
+    left: -15px;
+    background: url("http://static.zhiziyun.com/images/checkmark.png") no-repeat center center;
+    background-size: 14px 14px;
+    display: block;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.glyphicon-plus:before {
+    content: "\2b";
+}

@@ -1,0 +1,37 @@
+{
+  "list": {
+    "data": {
+      "datas": [{
+        "id":1,
+        "name": "XIAOMING",
+        "age": 2,
+        "sex":"famale",
+        "address": "LongZe"
+      }, {
+        "id":2,
+        "name": "XIAOHUA",
+        "age": 3,
+        "sex":"male",
+        "address": "HuiLongGuan"
+      }, {
+        "id":3,
+        "name": "XIAOMING",
+        "age": 4,
+        "sex":"famale",
+        "address": "LiShuiQiao"
+      }, {
+        "id":4,
+        "name": "XiaoShu",
+        "age": 5,
+        "sex":"male",
+        "address": "TianTongYuan"
+      }],
+      "totalIndex": 3,
+      "totalCount": 30
+    },
+    "status": {
+      "code": 1,
+      "message": ""
+    }
+  }
+}

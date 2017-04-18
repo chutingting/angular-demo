@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>ngzTree</title>
+    <link rel="stylesheet" href="ztree_v3/css/zTreeStyle/zTreeStyle.css">
+    <script src="src/jquery.min.js"></script>
+    <script src="ztree_v3/js/jquery.ztree.all-3.5.js"></script>
+    <script src="src/angular.min.js"></script>
+    <script src="src/ng-zTree-directive.js"></script>
+    <script src="src/tree.controller.js"></script>
+  </head>
+  <body ng-controller="ngzTreeController" >
+  <ul class="ztree" id="tree" z-nodes = "zNodes" setting = "setting" z-tree></ul>
+  </body>
+</html>

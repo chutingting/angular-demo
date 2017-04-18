@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .main{
+            margin:40px;
+        }
+    </style>
+</head>
+<body>
+<div  style="height: 50px;line-height: 50px;margin-right: 50px" ng-controller="listCon">
+    <div class="form-inline pull-right topBtn">
+        <button class="btn btn-warning" ui-sref="listA">列表</button>
+        <button class="btn btn-primary" ui-sref="add" ng-click="add()">添加</button>
+    </div>
+    <div ui-view="" class="main"></div>
+</div>
+
+
+<script src="js/angular.js"></script>
+<script src="js/angular-ui-router.js"></script>
+<script src="app.js"></script>
+<script>
+    app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $stateProvider
+                .state("listA",{  // listA状态名  和 ui-sref="listA" 一致
+                    url:"/list",  //  /list哈希值
+                    templateUrl:"List.html"
+                })
+                .state("add",{
+                    url:"/add",
+                    templateUrl:"add.html"
+                })
+                .state("edit",{
+                        url:"/edit",
+                    templateUrl:"add.html"
+                })
+                .state("editAdd",{
+                        url:"/editAdd",
+                    templateUrl:"List.html"
+                })
+          $urlRouterProvider.otherwise("/list"); //默认显示页
+    }])
+
+</script>
+
+<script src="addCon.js"></script>
+<script src="listCon.js"></script>
+</body>
+</html>

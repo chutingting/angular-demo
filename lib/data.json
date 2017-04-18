@@ -1,0 +1,37 @@
+{
+  "list": {
+    "data": {
+      "datas": [{
+        "id":1,
+        "name": "小明",
+        "age": 2,
+        "sex":"女",
+        "address": "泷泽"
+      }, {
+        "id":2,
+        "name": "小花",
+        "age": 3,
+        "sex":"男",
+        "address": "回龙观"
+      }, {
+        "id":3,
+        "name": "小明",
+        "age": 4,
+        "sex":"女",
+        "address": "立水桥"
+      }, {
+        "id":4,
+        "name": "小树",
+        "age": 5,
+        "sex":"男",
+        "address": "天通苑"
+      }],
+      "totalIndex": 3,
+      "totalCount": 30
+    },
+    "status": {
+      "code": 1,
+      "message": ""
+    }
+  }
+}

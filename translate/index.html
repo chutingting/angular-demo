@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../demo03_ok/lib/bootstrap.css">
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-translate.min.js"></script>
+    <script src="lib/translate.js"></script>
+
+</head>
+<body>
+
+<div class="box" ng-controller="con">
+
+    <button class="btn btn-default" ng-click="switching('en')">English</button>
+    <button class="btn btn-default" ng-click="switching('cn')">简体中文</button>
+
+    <div ng-repeat="item in list">
+        <button class="btn btn-info pull-left" style="margin:20px;">{{item}}</button>
+    </div>
+</div>
+
+
+<!--<select class="language-switching" ng-controller="LanguageSwitchingCtrl" ng-model="cur_lang"        ng-change="switching(cur_lang)">
+    <option value="en">English</option>
+    <option value="cn">简体中文</option>
+</select>-->
+
+<script>
+    var app = angular.module('app', ['pascalprecht.translate']);
+    //var lang = window.localStorage.lang||'cn';
+    var lang = 'cn';
+
+
+    app.config(['$translateProvider',function($translateProvider){
+       $translateProvider.preferredLanguage(lang);
+    }]);
+
+    app.controller('con',function($http,$scope,$translate){
+
+        $http.get("lib/cn.json").success(function(d){
+            $scope.list = d;
+        });
+        $scope.switching = function(lang){
+            var a = "lib/"+ lang + ".json";
+            $http.get(a).success(function(d){
+                $scope.list = d;
+            });
+            $translate.use(lang); //切换语言
+           // window.localStorage.lang = lang;
+           // window.location.reload();
+        };
+
+    });
+
+</script>
+</body>
+</html>

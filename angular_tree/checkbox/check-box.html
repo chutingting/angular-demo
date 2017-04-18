@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>TreeView - Items with Check Box</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/theme.selector.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular.integralui.min.js"></script>
+    <script type="text/javascript" src="js/angular.integralui.lists.min.js"></script>
+    <script type="text/javascript" src="js/angular.integralui.checkbox.min.js"></script>
+    <script type="text/javascript" src="js/angular.integralui.treeview.min.js"></script>
+    <script type="text/javascript">
+ 		angular
+			.module("appModule", ["integralui"])
+			.controller("appCtrl", ["$scope", "$timeout", "IntegralUITreeViewService", function($scope, $timeout, $treeService){
+				$scope.treeName = "treeSample";
+				$scope.itemIcon = "icons-medium empty-doc";
+				$scope.checkStates = ['checked', 'indeterminate', 'unchecked'];
+				$scope.currentState = 'checked';
+				$scope.checkList = [];
+				
+                initTheme($scope, $treeService, $scope.treeName);
+
+				$scope.items = [
+					/*{ id: 1, text: "Solution 'Application1' (1 project)", icon: "icons-medium solution" },*/
+					{ 
+						id: 2,
+						text: "ALL",
+						icon: "icons-medium documents",
+						items: [
+							{ 
+								id: 21,
+								pid: 2,
+								text: "ONE",
+								icon: "icons-medium properties",
+								expanded: false,
+								items: [
+									{ id: 211, pid: 21, text: "one1", icon: "icons-medium assembly", checkState: 'checked' },
+									{ id: 212, pid: 21, text: "one2", icon: "icons-medium notes" },
+									{ 
+										id: 213,
+										pid: 21,
+										text: "one3",
+										expanded: false,
+										icon: "icons-medium resources",
+										items: [
+											{ id: 2131, pid: 213, text: "Resources.Designer.cs" }
+										]
+									},
+									{ 
+										id: 214,
+										pid: 21,
+										text: "one4",
+										icon: "icons-medium documents",
+										expanded: false,
+										items: [
+											{ id: 2141, pid: 214, text: "Settings.Designer.cs", checkState: 'checked' }
+										]
+									}
+								]
+							},
+							{ 
+								id: 22,
+								pid: 2,
+								text: "TWO",
+								icon: "icons-medium references",
+								expanded: false,
+								checkState: 'checked',
+								items: [
+									{ id: 221, pid: 22, text: "two1" },
+									{ id: 222, pid: 22, text: "two2" },
+									{ id: 223, pid: 22, text: "two3" },
+									{ id: 224, pid: 22, text: "two4" },
+									{ id: 225, pid: 22, text: "two5" }
+								]
+							},
+							{ 
+								id: 23,
+								pid: 2,
+								text: "Three",
+								icon: "icons-medium form",
+								items: [
+									{ id: 231, pid: 23, text: "three1" },
+									{ id: 232, pid: 23, text: "three2", checkState: 'checked' }
+								]
+							},
+							{ id: 24, pid: 2, text: "Four", icon: "icons-medium new" }
+						]
+					}
+				];
+
+				var initTimer = $timeout(function(){
+					//$treeService.selectedItem($scope.treeName, $scope.items[0]);
+
+					//$treeService.updateView($scope.treeName);
+					$treeService.updateCheckValues($scope.treeName);
+
+					$timeout.cancel(initTimer);
+				}, 1);
+
+				$scope.checkBoxSettings = {
+					autoCheck: true,
+					threeState: true
+				}
+
+				$scope.showCheckList = function(){
+					$scope.checkList = $treeService.getCheckList($scope.treeName, $scope.currentState);
+				}
+
+				$scope.itemCheckStateChanging = function(e){
+					if (e.value == 'unchecked')
+						e.item.checkState = 'checked';
+				}
+			}]);
+    </script>
+    <style type="text/css">
+		.iui-treeview-item-content
+		{
+			padding: 4px;
+		}
+	    .iui-checkbox-box
+	    {
+	        border: 0;
+	        width: 16px;
+	        height: 16px;
+	    }
+	    .iui-checkbox-checked
+	    {
+	        background-image: url("resources/checkbox-checked.png");
+	    }
+	    .iui-checkbox-unchecked
+	    {
+	        background-image: url("resources/checkbox-unchecked.png");
+	    }
+	    .iui-checkbox-indeterminate
+	    {
+	        background-image: url("resources/checkbox-indeterminate.png");
+	    }
+		.feature-content
+		{
+			width: 800px;
+		}
+    	.directive
+    	{
+    		height: 300px;
+    	}
+		.control-panel
+		{
+			margin-left: 35px;
+			width: 250px;
+		}
+		.check-list
+		{
+		    background: white;
+		    border: thin solid #cecece;
+		    border-radius: 3px;
+		    list-style-type: none;
+		    margin: 5px 0 0 0;
+		    overflow: auto;
+		    padding: 0;
+		    width: 350px;
+		    height: 215px;
+		}
+		.check-list li
+		{
+		    padding-left: 15px;
+		}
+    </style>
+</head>
+<body ng-app="appModule" ng-controller="appCtrl">
+    <div class="content">
+        <div class="feature">
+	        <div class="feature-content">
+                <iui-treeview name="{{treeName}}" class="directive" items="items" item-icon="itemIcon" show-check-boxes="true" checkbox-settings="checkBoxSettings" item-checkstate-changing="itemCheckStateChanging(e)"></iui-treeview>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

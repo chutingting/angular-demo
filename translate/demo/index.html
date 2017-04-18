@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/bootstrap.css">
+    <script src="../../lib/angular.js"></script>
+    <script src="../lib/angular-translate.min.js"></script>
+    <script src="../lib/loader-static-files.js"></script>
+    <script src="../lib/angular-sanitize.min.js"></script>
+
+</head>
+<body>
+<div class="panel panel-default" ng-controller="con">
+    <div class="page-header">
+        <button class="btn btn-default" ng-click="switching('cn')">中文</button>
+        <button class="btn btn-default" ng-click="switching('en')">English</button>
+    </div>
+    <div class="panel-body">
+        <!--<h1>{{"name" | translate}}</h1>-->
+        <!--<h1 ng-bind-html=" 'title' | translate"></h1>-->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-bind-html=" 'name' | translate"></th>
+                    <th ng-bind-html=" 'sex' | translate"></th>
+                    <th ng-bind-html=" 'age' | translate"></th>
+                    <th ng-bind-html=" 'address' | translate"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list">
+                    <td ng-click="aa(item)">{{item.name}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.sex}}</td>
+                    <td>{{item.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="content"></div>
+    </div>
+    <demo-model ng-show="model"></demo-model>
+
+</div>
+<script>
+    var app = angular.module("app",['pascalprecht.translate','ngSanitize']);
+    var text = '<h1 ng-bind-html=" \'title\' | translate"></h1>';
+
+
+        app.config(['$translateProvider', function ($translateProvider) {
+            $translateProvider.useStaticFilesLoader({
+                prefix: 'lib/',
+                suffix: '.json'
+            });
+            $translateProvider.preferredLanguage('cn');
+        }]);
+        app.controller("con",function($scope,$http,$translate){
+            $scope.list = [];
+            $scope.switching = function(lang){
+                $translate.use(lang); //切换语言
+
+                /*var data =  lang + ".json";
+                $http.get(data).success(function(d){
+                    $scope.list = d.list.data.datas;
+                })*/
+            };
+
+            $http.get('cn.json').success(function(d){
+                $scope.list = d.list.data.datas;
+
+            });
+
+            $scope.aa = function(item){
+//                alert("name" | translate )
+                $scope.$broadcast("showModel",{data:item});
+            }
+        });
+   // document.getElementById("content").innerHTML = text;
+</script>
+<script src="demo.directive.js"></script>
+</body>
+</html>

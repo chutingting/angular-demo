@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        td{width:100px;line-height: 30px;border:1px solid #000;}
+    </style>
+</head>
+<body >
+
+<!--<table>
+    <tr ng-repeat="items in list">
+        <td>{{items.item}}</td>
+    </tr>
+</table>-->
+
+<list></list>
+
+<script src="js/angular.js"></script>
+<script>
+    var app = angular.module("app",[]);
+    /*app.controller("con",function($scope){
+        $scope.list = [
+            {item:"item1"},
+            {item:"item2"},
+            {item:"item3"}
+        ];
+    })*/
+    app.directive("list",function(){
+        return{
+            restrict : "E",
+            templateUrl :  'list.html',
+            replace : true, // true 替换当前元素
+            controller:function($scope,$http){
+                /*$scope.list = [
+                    {name:"item1", itemb:"itemb"},
+                    {name:"item2"},
+                    {name:"item3"}
+                ];*/
+
+                $scope.list = [] ;
+                $http.get("data.json").success(function(d){
+                    $scope.list = d.list.data.datas ;
+                });
+                
+                $scope.cName = function(items){
+                    alert(items.name);
+                };
+
+
+
+
+
+
+
+            }
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/bootstrap.css">
+    <link rel="stylesheet" href="lib/style.css">
+</head>
+<body>
+
+
+<div ui-view="" class="panel panel-default"></div>
+
+
+<script src="lib/angular.js"></script>
+<script src="lib/angular-ui-router.js"></script>
+<script>
+   var app = angular.module("app",['ui.router']);
+    app.config(function($stateProvider,$urlRouterProvider){
+        $stateProvider
+                .state("list",{
+                    url:"/list",
+                    controller:"listCon",
+                    templateUrl:"./list.html"
+                })
+                .state("detail",{
+                    url:"/detail",
+                    controller:"detail",
+                    params:{data:null},
+                    templateUrl:"./detail.html"
+                });
+        $urlRouterProvider.otherwise("/list");
+    });
+
+    app.controller("listCon",function($http,$scope,$state,$rootScope){
+        var list = [];
+        var sel = [{name:"全部",code:""},{name:"男",code:"男"},{name:"女",code:"女"}];
+        $scope.searchName = "";
+        $scope.sex = "";
+        $scope.sexsele = sel;
+        $http.get("./lib/data.json").success(function(d){
+            $rootScope.list = d.list.data.datas;
+        });
+        /*删除*/
+        $scope.del = function(item){
+           $scope.list.splice($scope.list.indexOf(item),1);
+        };
+        $scope.detail = function(item){
+            $state.go("detail",{data:item});
+        };
+        $scope.add = function(){
+            $scope.$broadcast("showDialog");
+        };
+        $scope.edit = function(item){
+            $scope.$broadcast("showDialog",{data:item});
+        };
+
+
+        $scope.search = function(){
+           var data = []; //搜索到的数据
+            /*$http.get("./lib/data.json").success(function(d){
+                for(var i=0;i<d.list.data.datas.length;i++){
+                  if(d.list.data.datas[i].name == $scope.searchName || d.list.data.datas[i].sex == $scope.sex){
+                       data.push(d.list.data.datas[i]);
+                  }
+                }
+                if($scope.searchName == "" && $scope.sex == ""){
+                    $rootScope.list = d.list.data.datas;
+                }else{
+                    $rootScope.list = data;
+                }
+            });*/
+                if($scope.searchName != "" && $scope.sex != ""){
+                    $http.get("./lib/data.json").success(function(d){
+                        for(var i=0;i<d.list.data.datas.length;i++){
+                            if(d.list.data.datas[i].name == $scope.searchName && d.list.data.datas[i].sex == $scope.sex){
+                                data.push(d.list.data.datas[i]);
+                            }
+                        }
+                        $rootScope.list = data;
+                    });
+                }else if($scope.searchName != ""){
+                    $http.get("./lib/data.json").success(function(d){
+                        for(var i=0;i<d.list.data.datas.length;i++){
+                            if(d.list.data.datas[i].name == $scope.searchName){
+                                data.push(d.list.data.datas[i]);
+                            }
+                        }
+                        $rootScope.list = data;
+                    })
+                }else if($scope.sex != "") {
+                    $http.get("./lib/data.json").success(function (d) {
+                        for (var i=0;i<d.list.data.datas.length;i++) {
+                            if (d.list.data.datas[i].sex == $scope.sex) {
+                                data.push(d.list.data.datas[i]);
+                            }
+                        }
+                        $rootScope.list = data;
+                    })
+                }else{
+                    $http.get("./lib/data.json").success(function (d) {
+                        $rootScope.list = d.list.data.datas;
+                    })
+                }
+            };
+
+    });
+   /*详情*/
+    app.controller("detail",function($scope,$state){
+       // $scope.sub = true;
+        var data = $state.params.data;
+        $scope.name = data.name;
+        $scope.age = data.age;
+        $scope.sex = data.sex;
+        $scope.address = data.address;
+
+        $scope.cencel = function(){
+            $state.go("list");
+        }
+    });
+
+    app.directive("showDialog",function(){
+        return {
+            templateUrl : "./add.html",
+            restrict:'EA',
+            scope:{
+                "callback" : "="
+            },
+            controller : function($scope,$rootScope,$state){
+                $scope.model = false;
+                $scope.name = "";
+                $scope.age = "";
+                $scope.address = "";
+
+                $scope.cencel = function(){
+                    $scope.model = false;
+                };
+
+                //添加
+                /*$scope.sub = function(){
+                    var data = {
+                        name : $scope.name,
+                        age : $scope.age,
+                        sex : $scope.sex,
+                        address : $scope.address
+                    };
+
+                    if ($scope.name == "" || $scope.age == "" || $scope.address == ""  ){
+                        alert("内容不能为空");
+                        return false;
+                    }
+
+                    $rootScope.list.push(data);
+
+                    $scope.name = "";
+                    $scope.age = "";
+                    $scope.sex = "";
+                    $scope.address = "";
+                    $rootScope.model = true;
+
+                };*/
+                /*修改*/
+                $scope.$on("showDialog",function(event,data){
+                    $scope.model = true;
+                    if(data != null || data != undefined){
+                        $scope.name = data.data.name;
+                        $scope.age = data.data.age;
+                        $scope.sex = data.data.sex;
+                        $scope.address = data.data.address;
+                    }
+
+                    $scope.sub = function(){
+                        var d = {
+                            name : $scope.name,
+                            sex : $scope.sex,
+                            age : $scope.age,
+                            address : $scope.address
+                        };
+
+                        if ($scope.name == "" || $scope.age == "" || $scope.address == "" || $scope.sex == "" ){
+                            alert("内容不能为空");
+                            return false;
+                        }
+
+                        if(data != null || data != undefined){
+                            for(var i=0;i<$rootScope.list.length;i++){
+                                if($rootScope.list[i].id == data.data.id){
+                                    $rootScope.list[i] = d;
+                                }
+                            }
+                        }else{
+                            $rootScope.list.push(d);
+                        }
+
+                        $scope.name = "";
+                        $scope.sex = "";
+                        $scope.age = "";
+                        $scope.address = "";
+                        $scope.model = false;
+                    };
+
+                });
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

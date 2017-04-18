@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+  <meta charset="UTF-8">
+    <script src="../lib/angular.js"></script>
+    <script src="../lib/angular-translate.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <div ng-controller="translateController">
+
+      <div>
+		<button ng-click="changeLanguage('zh')">中文</button>
+        <button ng-click="changeLanguage('en')">English</button>
+      </div>
+      
+      <h2>{{'language' | translate}}</h2>
+      
+      <hr>
+      
+      <p>{{'greeting' | translate}}</p>
+      
+    </div>
+  </body>
+
+</html>
+
+

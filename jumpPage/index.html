@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../lib/angular.js"></script>
+    <script src="../lib/angular-ui-router.js"></script>
+</head>
+<body>
+
+    <button ui-sref="a">A</button>
+    <button ui-sref="b">B</button>
+
+    <div ui-view=""></div>
+
+<script>
+    var app = angular.module("app",['ui.router']);
+    app.config(function($stateProvider,$urlRouterProvider){
+        $stateProvider
+                .state("a",{
+                    url:"/A",
+                    templateUrl:"a.html"
+                })
+                .state("b",{
+                    url:"/B",
+                    templateUrl:"b.html"
+                });
+        $urlRouterProvider.otherwise("/A");
+    })
+</script>
+</body>
+</html>

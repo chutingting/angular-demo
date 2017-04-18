@@ -1,0 +1,33 @@
+
+
+
+<div class="solveClass panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">分类列表</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-vcenter table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>地址</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in list">
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.sex}}</td>
+                <td>{{item.address}}</td>
+                <td><button class="btn btn-info btn-sm"  ng-click="edit($index)" ui-sref="edit">编辑</button><button class="btn btn-danger btn-sm" ng-click="remove($index)">删除</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+

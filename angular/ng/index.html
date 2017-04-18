@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>angular</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        .main{
+            margin:40px;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="ListCon">
+    <button class="btn btn-info" ng-click="add()">添加</button>
+    <div class="solveClass panel panel-default" ng-show="!li">
+        <div class="panel-heading" >
+            <h3 class="panel-title">分类列表</h3>
+        </div>
+        <div class="panel-body" >
+            <table class="table table-vcenter table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>地址</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in list">
+                    <td>{{item.name}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.sex}}</td>
+                    <td>{{item.address}}</td>
+                    <td><button class="btn btn-info btn-sm" ng-click="edit($index)" ui-sref="edit">编辑</button><button class="btn btn-danger btn-sm" ng-click="del(item)">删除</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-controller="addCon" ng-show="isShow">
+        <form class="form-horizontal" >
+            <div class="form-group">
+                <label  class="col-sm-1 control-label">姓名:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="formData.name" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="col-sm-1 control-label">年龄:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="formData.age">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">性别:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="formData.sex">
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="col-sm-1 control-label">地址:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control"  ng-model="formData.address">
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info col-sm-2 pull-right" style="margin-right: 150px" ng-click="sub()" ui-sref="editAdd">添加信息</button>
+            </div>
+        </form>
+    </div>
+<!--<div ui-view="" class="main"></div>-->
+</div>
+
+
+<script src="../js/angular.js"></script>
+<script>
+
+    var app = angular.module('app', []);
+
+</script>
+<script src="listCon.js"></script>
+<script src="addEditCon.js"></script>
+</body>
+</html>

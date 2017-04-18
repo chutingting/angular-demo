@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>延迟</title>
+</head>
+<body>
+<div ng-controller="con"></div>
+<script src="js/angular.js"></script>
+<script>
+    var app = angular.module("app",[]);
+    app.controller("con",function($timeout){
+        $timeout(function(){
+            console.log(123)
+        },5000)
+    })
+</script>
+</body>
+</html>

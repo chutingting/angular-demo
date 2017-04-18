@@ -1,0 +1,40 @@
+
+
+<div class="page-header">
+    <label class="pull-left">姓名:</label>
+    <div class="col-sm-2 ">
+        <input type="text" class="form-control"  ng-model="searchName">
+    </div>
+    <div class="col-sm-2 ">
+    <select class="form-control" ng-model="sex" ng-options="m.code as m.name for m in sexsele"></select>
+    </div>
+    <button ng-click="add()" class="btn btn-success">新增</button>
+    <button ng-click="search()" class="btn btn-info">查询</button>
+</div>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>地址</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in $root.list">
+            <td>{{item.name}}</td>
+            <td>{{item.sex}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.address}}</td>
+            <td><button ng-click="del(item)" class="btn btn-default">删除</button><button ng-click="detail(item)" class="btn btn-default">详情</button><button ng-click="edit(item)" class="btn btn-default">修改</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+
+</div>
+<show-dialog></show-dialog>

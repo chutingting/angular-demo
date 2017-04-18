@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+        .page{
+            width:400px;height: 100px;
+            position: absolute;
+            line-height: 100px;
+            text-align: center;
+            transition: all 500ms ease;
+        }
+        p{
+            width: 100%;
+            height: 100%;
+        }
+        /*ng-enter 进入开始时状态*/
+        .slideRight.ng-enter {
+            transform: translate3d(-100%,0,0);
+            transform: scale(1);
+            opacity: 0;
+        }
+        /*ng-enter-active 进入结束时状态*/
+        .slideRight.ng-enter-active {
+            transform: translate3d(0,0,0);
+            transform: scale(1.5);
+            opacity: 1;
+        }
+        /*ng-leave 离开开始时状态*/
+        .slideRight.ng-leave {
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+        /*ng-leave-active 离开结束时状态*/
+        .slideRight.ng-leave-active {
+            transform: translate3d(-100%,0,0);
+            opacity: 0;
+        }
+
+    </style>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="../../js/angular-ui-router.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular-animate.min.js"></script>
+</head>
+<body ng-controller="ctr">
+
+    <button ui-sref="a" ng-click="change('/a','slideRight')">按钮一</button>
+    <button ui-sref="b" ng-click="change('/b','slideRight')">按钮二</button>
+    <button ui-sref="c" ng-click="change('/c','slideRight')">按钮三</button>
+
+    <div ui-view="" class="page" ng-class="dh"></div>
+
+    <script>
+        var app = angular.module("app",['ui.router','ngAnimate']);
+
+        app.config(function($stateProvider,$urlRouterProvider){
+            $stateProvider
+                    .state('a',{
+                        url:'/a',
+                        templateUrl : 'a.html'
+                    })
+                    .state('b',{
+                        url:'/b',
+                        templateUrl : 'b.html'
+                    })
+                    .state('c',{
+                        url:'/c',
+                        templateUrl : 'c.html'
+                    })
+            $urlRouterProvider.otherwise('/a');
+        })
+
+        app.controller('ctr',function($scope,$location,$window){
+                $scope.change = function(url,animateCss){
+                    //判断url
+                    if(url == undefined){
+                        $scope.url = '/a';
+                    }else{
+                        $scope.url = url;
+                    }
+                    //动画
+                    if(animateCss == undefined){
+                        $scope.dh == 'fadeInOut';
+                    }else{
+                        $scope.dh = animateCss;
+                    }
+                    //返回
+                    if(url == 'back'){
+                        $window.history.back(); //返回上一页
+                    }else{
+                        $location.path($scope.url);  //跳转页面
+                    }
+                 }
+        })
+
+    </script>
+</body>
+</html>

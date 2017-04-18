@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta name="description" content="ng trrview example">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>tree</title>
+    <script src="angular.js"></script>
+    <script src="demo02.js"></script>
+    <style>
+        ul{
+            list-style: none;
+        }
+        .text-field{
+            cursor: pointer;
+        }
+        .check-box{
+            width: 24px;
+            height: 18px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body >
+<div ng-controller="DemoController as demo" class="container">
+
+    <div class="row">
+        <tree-view tree-data="demo.tree" text-field="name" value-field='id' item-clicked="demo.itemClicked($item)" item-checked-changed="demo.itemCheckedChanged($item)" can-checked="true" ></tree-view>
+    </div>
+
+    <script type="text/ng-template" id="/treeView.html">
+        <ul class="tree-view">
+            <li ng-repeat="item in treeData" ng-include="itemTemplateUrl || '/treeItem.html'" ></li>
+        </ul>
+    </script>
+
+    <script type="text/ng-template" id="/treeItem.html">
+        <i ng-click="itemExpended(item, $event);" class="{{getItemIcon(item)}}"></i>
+
+        <input type="checkbox" ng-model="item.isChecked" class="check-box" ng-if="canChecked" ng-change="warpCallback('itemCheckedChanged', item, $event)">
+
+        <span class='text-field' ng-click="warpCallback('itemClicked', item, $event);">{{item[textField]}}</span>
+        <ul ng-if="!isLeaf(item)" ng-show="item.isExpend">
+            <li ng-repeat="item in item.children" ng-include="itemTemplateUrl || '/treeItem.html'"></li>
+        </ul>
+    </script>
+
+</div>
+</body>
+</html>

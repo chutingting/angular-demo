@@ -1,0 +1,73 @@
+<!doctype html>
+<html ng-app="example">
+<head>
+    <title>Angular Tree</title>
+    <link rel="stylesheet" type="text/css" href="css/tree-control.css">
+
+    <script src="demo/angular.1.2.29.js"></script>
+    <script src="jquery.js"></script>
+    <script src="angular-tree-control02.js"></script>
+</head>
+<body >
+
+<section  ng-controller="classic">
+
+<div class="example-caption">EXAMPLE:</div>
+<div save-content="classic-html">
+    <treecontrol class="tree-classic" tree-model="treedata" on-selection="showSelected(node)">
+        label: {{node.name}} {{node.age}}
+    </treecontrol>
+</div>
+
+
+
+    <!--<script save-content="classic-js">
+        function Classic($scope) {
+            $scope.treedata=createSubTree(3, 4, "");
+            $scope.showSelected = function(sel) {
+                $scope.selectedNode = sel;
+            };
+        }
+    </script>-->
+</section>
+
+
+</div>
+
+
+</div>
+
+
+<script>
+    var example = angular.module("example", ['treeControl']);
+
+    example.controller("classic",function($scope){
+        //$scope.treedata=createSubTree(3, 4, "");
+
+        $scope.treedata = [
+            { "name" : "A", "age" : "1", "children" : [
+                { "name" : "a", "age" : "2", "children" : [] },
+                { "name" : "aa", "age" : "3", "children" : [
+                    { "name" : "aaa", "age" : "4"}
+                ]}
+            ]},
+            { "name" : "B", "age" : "33", "children" : [
+                { "name" : "b", "age" : "2", "children" : [] },
+                { "name" : "bb", "age" : "3", "children" : [
+                    { "name" : "bbb", "age" : "4"}
+                ]}
+            ] },
+            { "name" : "C", "age" : "29", "children" : [] }
+        ];
+
+        /*$scope.showSelected = function(sel) {
+            $scope.selectedNode = sel;
+        };*/
+
+
+    });
+
+
+</script>
+</body>
+</html>

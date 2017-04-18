@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        .main{
+            margin:40px;
+        }
+    </style>
+</head>
+<body>
+
+<div ng-controller="con">
+    <div class="form-inline pull-right topBtn" style="position: absolute;right: 50px;top:10px;">
+        <button class="btn btn-warning" ui-sref="list">列表</button>
+        <button class="btn btn-primary" ui-sref="add"  ng-click="add()">添加</button>
+    </div>
+    <div ui-view="" class="main"></div>
+</div>
+
+</div>
+<script src="../js/angular.js"></script>
+<script src="../js/angular-ui-router.js"></script>
+<script>
+    var app = angular.module("app",["ui.router"]);
+    app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+        $stateProvider
+                .state("list12222",{
+                    url:"/list",
+                    templateUrl:"list03.html"
+                })
+                .state("edit",{
+                    url:"/edit",
+                    templateUrl:"edit03.html"
+                })
+                .state("add",{
+                    url:"/add",
+                    templateUrl:"edit03.html"
+                })
+        $urlRouterProvider.otherwise("/list"); //默认显示页
+    }])
+
+</script>
+<script src="con.js"></script>
+</body>
+</html>
