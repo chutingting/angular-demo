@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .inputSel{width:200px;height: 26px;border:1px solid #ddd;text-indent: 10px;}
+        #triangle-down {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 9px solid #999;
+            position: absolute;
+            right: 0;top:10px;
+        }
+
+        .search{
+            border: 1px solid #ccc;
+            border-top: 0px;width:202px;
+            box-shadow: 1px 1px 3px #ededed;
+        }
+        table{
+            border-collapse: collapse;
+
+        }
+        table tr:hover{background: #eee;}
+
+        button{
+            width: 40px;
+            line-height: 20px;
+            border: none;
+            background: #31b0d5;
+            color: #fff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<search-select></search-select>
+
+
+<script src="../lib/angular.js"></script>
+<script>
+    var app = angular.module('app',[]);
+    app.directive("searchSelect",function(){
+        return{
+            restrict : "E",
+            templateUrl :  'sel.html',
+            controller:function($scope,$http){
+                $scope.list = [];
+                $http({
+                    method: 'GET',
+                    url: 'data.json'
+                }).then(function successCallback(d) {
+                    $scope.list = d.data.datas;
+                });
+
+
+                $scope.name = "";
+                $scope.searchModalShow = false;
+
+                $scope.inputData = function(){
+                    if($scope.name != ""){
+                        var data = [];
+                        $http.get('data.json').success(function(d){
+                            for(var i=0;i< d.datas.length;i++){
+                                if(d.datas[i].name == $scope.name){
+                                    data.push(d.datas[i]);
+                                }
+                            }
+                            $scope.list = data;
+                            if(data.length != 0){
+                                $scope.searchModalShow = true;
+                            }else{
+                                $scope.searchModalShow = false;
+                            }
+                        })
+                    }else{
+                        $http.get('data.json').success(function(d){
+                            $scope.list = d.datas;
+                            $scope.searchModalShow = false;
+                        })
+                    }
+                };
+
+                //确定
+                var selectTool = {
+                    getSelectedItems : function(data){
+                        var res = [];
+                        for(var i=0;i<data.length;i++){
+                            if(data[i].ck){
+                                res.push(data[i]);
+                            }
+                        }
+                        return res;
+                    },
+                    selectAll : function(data,tag){
+                        for(var i=0;i<data.length;i++){
+                            data[i].ck = tag;
+                        }
+                    },
+                    selectOne : function(data,cb){
+                        var len = data.length;
+                        var slen = this.getSelectedItems(data).length;
+
+                        var tagAll = false;
+                        if(len != slen){
+                            tagAll = false;
+                        }else{
+                            tagAll = true;
+                        }
+                        cb(tagAll);
+                    }
+                };
+
+                $scope.ckOne = function(item){
+                    item.ck = !item.ck;
+                    selectTool.selectOne($scope.list,function(d){
+                        //$scope.ckAll = d;
+                    })
+                };
+                $scope.save = function(){
+                    var _data = selectTool.getSelectedItems($scope.list);
+                    if(_data.length == 0 ){
+                        alert("请选择一条数据!");
+                        return;
+                    }
+                    console.log(_data)
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

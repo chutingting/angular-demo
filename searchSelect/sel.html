@@ -1,0 +1,22 @@
+
+<div style="margin: 0 auto;width: 200px;">
+
+
+    <div style="position: relative;width: 200px;">
+        <input type="text" class="inputSel" ng-model="name" ng-keyup="inputData()">
+        <div id="triangle-down"></div>
+    </div>
+
+    <div class="search" ng-show="searchModalShow">
+        <table style="width:200px;">
+            <tr ng-repeat="item in list" style="line-height: 24px;" ng-click="ckOne(item)">
+                <td><input type="checkbox"  ng-model="item.ck"></td>
+                <td>{{item.name}}</td>
+            </tr>
+        </table>
+        <div style="padding:10px;text-align: right;">
+            <button ng-click="save()">确定</button>
+        </div>
+    </div>
+
+</div>
