@@ -84,50 +84,18 @@
                         })
                     }
                 };
-
-                //确定
-                var selectTool = {
-                    getSelectedItems : function(data){
-                        var res = [];
-                        for(var i=0;i<data.length;i++){
-                            if(data[i].ck){
-                                res.push(data[i]);
-                            }
-                        }
-                        return res;
-                    },
-                    selectAll : function(data,tag){
-                        for(var i=0;i<data.length;i++){
-                            data[i].ck = tag;
-                        }
-                    },
-                    selectOne : function(data,cb){
-                        var len = data.length;
-                        var slen = this.getSelectedItems(data).length;
-
-                        var tagAll = false;
-                        if(len != slen){
-                            tagAll = false;
-                        }else{
-                            tagAll = true;
-                        }
-                        cb(tagAll);
-                    }
-                };
-
                 $scope.ckOne = function(item){
                     item.ck = !item.ck;
-                    selectTool.selectOne($scope.list,function(d){
-                        //$scope.ckAll = d;
-                    })
                 };
                 $scope.save = function(){
-                    var _data = selectTool.getSelectedItems($scope.list);
-                    if(_data.length == 0 ){
-                        alert("请选择一条数据!");
-                        return;
+                    var res = [];
+                    for(var i=0;i<$scope.list.length;i++){
+                        if($scope.list[i].ck){
+                            res.push($scope.list[i]);
+                        }
                     }
-                    console.log(_data)
+
+                    console.log(res);
                 }
             }
         }
