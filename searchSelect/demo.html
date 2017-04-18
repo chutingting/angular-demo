@@ -15,6 +15,17 @@
             right: 0;top:10px;
         }
 
+        .rotateUp {
+            transform:rotate(180deg);
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+        }
+        .rotateDown {
+             transform:rotate(0deg);
+             transition-duration: 0.5s;
+             transition-timing-function: ease;
+        }
+
         .search{
             border: 1px solid #ccc;
             border-top: 0px;width:202px;
@@ -50,12 +61,11 @@
             templateUrl :  'sel.html',
             controller:function($scope,$http){
                 $scope.list = [];
-                $http({
-                    method: 'GET',
-                    url: 'data.json'
-                }).then(function successCallback(d) {
-                    $scope.list = d.data.datas;
+                $http.get('data.json').success(function(d){
+                    $scope.list = d.datas;
                 });
+
+
 
 
                 $scope.name = "";
@@ -73,14 +83,17 @@
                             $scope.list = data;
                             if(data.length != 0){
                                 $scope.searchModalShow = true;
+                                $scope.clsName = "rotateUp";
                             }else{
                                 $scope.searchModalShow = false;
+                                $scope.clsName = "rotateDown";
                             }
                         })
                     }else{
                         $http.get('data.json').success(function(d){
                             $scope.list = d.datas;
                             $scope.searchModalShow = false;
+                            $scope.clsName = "rotateDown";
                         })
                     }
                 };
