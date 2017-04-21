@@ -49,37 +49,93 @@
 </head>
 <body>
 
-<search-select></search-select>
+<div ng-controller="con">
+
+    <search-select get-url="listUrl" callback-fn="cb"></search-select>
+
+
+    <p ng-repeat="x in xList">
+        <span>{{x.name}}</span>
+    </p>
+    <button ng-click="searchList()">查询</button>
+
+
+</div>
+
 
 
 <script src="../lib/angular.js"></script>
 <script>
     var app = angular.module('app',[]);
+
+    app.controller('con',function($scope){
+
+        $scope.listUrl = function(d){
+            return 'data.json?name=';
+        };
+
+        $scope.xList = [];
+
+        $scope.cb = function(d){
+            $scope.xList = d.datas;
+        };
+
+        //查询
+        $scope.searchList = function(){
+            $scope.$broadcast("search");
+        }
+
+    });
+
     app.directive("searchSelect",function(){
         return{
             restrict : "E",
-            templateUrl :  'sel.html',
+            template : '<div style="margin: 0 auto;width: 200px;">' +
+                        '<div style="position: relative;width: 200px;">' +
+                        '<input type="text" class="inputSel" ng-model="name" ng-keyup="inputData()"> ' +
+                        '<div id="triangle-down" class="{{clsName}}"></div></div>' +
+                        '<div class="search" ng-show="searchModalShow">' +
+                        '<table style="width:200px;"> <tr ng-repeat="item in list" style="line-height: 24px;" ng-click="ckOne(item)"> <td><input type="checkbox"  ng-model="item.ck"></td> <td>{{item.name}}</td> </tr> </table>' +
+                        '<div style="padding:10px;text-align: right;">' +
+                        '<button ng-click="save()">确定</button></div> ' +
+                        '</div> </div>' ,
+            scope:{
+                "getUrl":"=",
+                "callbackFn":"="
+            },
             controller:function($scope,$http){
                 $scope.list = [];
-                $http.get('data.json').success(function(d){
-                    $scope.list = d.datas;
-                });
-
+                var  _url = $scope.getUrl();
 
                 $scope.name = "";
                 $scope.searchModalShow = false;
 
+
+                function getData(){
+                    $http.get(_url + $scope.name ).success(function(d){
+                        $scope.list = d.datas;
+                        $scope.callbackFn(d);
+                    });
+                }
+                getData();
+
+
+
                 $scope.inputData = function(){
                     if($scope.name != ""){
-                        var data = [];
-                        $http.get('data.json').success(function(d){
+                        var datas = [],obj={};
+                        $http.get(_url + $scope.name).success(function(d){
                             for(var i=0;i< d.datas.length;i++){
                                 if(d.datas[i].name == $scope.name){
-                                    data.push(d.datas[i]);
+                                    datas.push(d.datas[i]);
                                 }
                             }
-                            $scope.list = data;
-                            if(data.length != 0){
+                            $scope.list = datas;
+
+                            obj.datas = datas;
+                            $scope.callbackFn(obj);
+
+                            if(datas.length != 0){
                                 $scope.searchModalShow = true;
                                 $scope.clsName = "rotateUp";
                             }else{
@@ -88,13 +144,19 @@
                             }
                         })
                     }else{
-                        $http.get('data.json').success(function(d){
+                        $http.get(_url + $scope.name).success(function(d){
                             $scope.list = d.datas;
+                            $scope.callbackFn(d);
                             $scope.searchModalShow = false;
                             $scope.clsName = "rotateDown";
                         })
                     }
                 };
+
+                $scope.$on("search",function(d){
+                    getData();
+                });
+
                 $scope.ckOne = function(item){
                     item.ck = !item.ck;
                 };
