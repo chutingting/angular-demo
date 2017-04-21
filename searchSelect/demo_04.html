@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .inputSel{width:200px;height: 26px;border:1px solid #ddd;text-indent: 10px;}
+        #triangle-down {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 9px solid #999;
+            position: absolute;
+            right: 0;top:10px;
+        }
+
+        .rotateUp {
+            transform:rotate(180deg);
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+        }
+        .rotateDown {
+             transform:rotate(0deg);
+             transition-duration: 0.5s;
+             transition-timing-function: ease;
+        }
+
+        .search{
+            border: 1px solid #ccc;
+            border-top: 0px;width:202px;
+            box-shadow: 1px 1px 3px #ededed;
+        }
+        table{
+            border-collapse: collapse;
+
+        }
+        table tr:hover{background: #eee;}
+
+        .saveBtn{
+            width: 40px;
+            line-height: 20px;
+            border: none;
+            background: #31b0d5;
+            color: #fff;
+            border-radius: 4px;
+        }
+        .closeBtn{
+            background: #fff;
+            color: #000;
+            border:1px solid #cccccc;
+            margin-right: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div ng-controller="con">
+
+    <search-select get-url="listUrl" analysis="cb" get-sel-data="getData" parameter="parameterData"></search-select>
+
+</div>
+
+
+
+<script src="../lib/angular.js"></script>
+<script>
+    var app = angular.module('app',[]);
+
+    app.controller('con',function($scope){
+
+        $scope.listUrl = function(d){
+            return 'data.json';
+        };
+
+        //数据结构
+        $scope.cb = function(d){
+            return d.datas;
+        };
+
+        $scope.parameterData = {
+            name : "name",
+            dataStructure :"datas"
+        };
+
+        //获取选中值
+        var getSelData = [];
+        $scope.getData = function(d){
+            getSelData = d;
+            console.log(getSelData);
+        };
+
+    });
+
+    app.directive("searchSelect",function(){
+        return{
+            restrict : "E",
+            template : '<div style="margin: 0 auto;width: 200px;">' +
+                        '<div style="position: relative;width: 200px;">' +
+                        '<input type="text" class="inputSel" ng-model="name" ng-keyup="inputData()"> ' +
+                        '<div id="triangle-down" class="{{clsName}}"></div></div>' +
+                        '<div class="search" ng-show="searchModalShow">' +
+                        '<table style="width:200px;"> <tr ng-repeat="item in list" style="line-height: 24px;" ng-click="ckOne(item)"> <td><input type="checkbox"  ng-model="item.ck"></td> <td>{{item.searchNameShow}}</td> </tr> </table>' +
+                        '<div style="padding:10px;text-align: right;">' +
+                        '<button ng-click="close()" class="saveBtn closeBtn">关闭</button><button ng-click="save()" class="saveBtn">确定</button></div> ' +
+                        '</div></div>',
+            scope:{
+                "getUrl":"=",
+                "analysis":"=",
+                "getSelData":"=",
+                "parameter" : "="
+            },
+            controller:function($scope,$http){
+                $scope.list = [];
+                var  _url = $scope.getUrl();
+
+                $scope.name = "";
+                $scope.searchModalShow = false;
+
+
+                $scope.parameterData = $scope.parameter;
+
+                var searchName = $scope.parameterData.name;
+                var dataStructure = $scope.parameterData.dataStructure;
+
+                //转换数据 (显示)
+                function convert(data){
+                    for(var i=0;i<data.length;i++){
+                        data[i].searchNameShow = data[i][searchName];
+                    }
+                    return data;
+                }
+
+                var dataList = "";
+                function getData(){
+                    $http.get(_url + $scope.name ).success(function(d){
+                        dataList = $scope.analysis(d);
+                        $scope.list = convert(dataList);
+
+                    });
+                }
+                getData();
+
+
+                $scope.inputData = function(){
+                    if($scope.name != ""){
+                        var datas = [],obj={};
+
+                        $scope.list = dataList;
+
+                        for(var i=0;i< $scope.list.length;i++){
+                            if($scope.list[i][searchName].indexOf($scope.name)>=0){
+                                datas.push($scope.list[i]);
+                            }
+                        }
+                        obj[dataStructure] = datas;
+                        $scope.list =  $scope.analysis(obj);
+
+                        if(datas.length != 0){
+                            $scope.searchModalShow = true;
+                            $scope.clsName = "rotateUp";
+                        }else{
+                            $scope.searchModalShow = false;
+                            $scope.clsName = "rotateDown";
+                        }
+                    }else{
+                        $scope.list = dataList;
+                        $scope.searchModalShow = false;
+                        $scope.clsName = "rotateDown";
+                    }
+                };
+
+
+                $scope.ckOne = function(item){
+                    item.ck = !item.ck;
+                };
+                $scope.save = function(){
+                    var res = [];
+                    for(var i=0;i<$scope.list.length;i++){
+                        if($scope.list[i].ck){
+                            res.push($scope.list[i]);
+                        }
+                    }
+                    if(res.length == 0){
+                        alert("请选择一条数据!");
+                        return;
+                    }
+
+                    $scope.getSelData(res);
+                };
+                $scope.close = function(){
+                    $scope.searchModalShow = false;
+                    $scope.name = "";
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
