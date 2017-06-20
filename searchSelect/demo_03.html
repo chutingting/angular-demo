@@ -57,7 +57,6 @@
 
 <div ng-controller="con">
 
-    <button ng-click="ckBtn">点击</button>
 
     <search-select get-url="listUrl" callback-fn="cb" get-sel-data="getData"></search-select>
 
@@ -85,10 +84,6 @@
         $scope.getData = function(d){
             getSelData = d;
         };
-
-        $scope.ckBtn = function(){
-
-        }
 
     });
 

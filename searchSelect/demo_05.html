@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+    <script src="../lib/angular.js"></script>
+
+</head>
+<body ng-controller="ctr">
+    <search-select get-url="listUrl" analysis="cb" get-sel-data="getData" parameter="parameterData" search-data="searchData"></search-select>
+
+    <script src="searchSel.directive.js"></script>
+    <script>
+        angular.module("app").controller("ctr",function($scope){
+            $scope.listUrl = function(){
+                return 'data_02.json';
+            };
+            $scope.cb = function(d){
+                return d.data.t.datas;
+            };
+            $scope.searchData = function(d){
+                return d;
+            };
+            $scope.parameterData = {
+                name : "lenovoId"
+            };
+
+            //获取选中值
+            var getSelData = [];
+            $scope.getData = function(d){
+                getSelData = d;
+                console.log(getSelData);
+            };
+        })
+    </script>
+
+
+</body>
+</html>

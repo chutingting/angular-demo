@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp" ng-controller="myCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0; list-style: none;font-size:12px;}
+        .clearfix{overflow: hidden;display:block;clear:both}
+        .clearfix:after{zoom:1}
+        .relation{margin-top:7px;font:14px/38px "微软雅黑"; height: 38px; background: #f8f8f8; padding-left: 26px; color: #666;}
+        .relation li{ margin-top: 5px;float:left;padding-left:50px;cursor:pointer;text-decoration: double}
+        .relation li:hover{color:#f00}
+        .tableMain li{float:left;padding:5px 10px;width:50px}
+
+
+    </style>
+    <link rel="stylesheet" href="../lib/bootstrap.css">
+    <script src="../lib/angular.js"></script>
+</head>
+<body>
+<ul class="relation clearfix">
+    <li class="news" ng-click="others.addContact()">新增</li>
+    <li class="dele" ng-click="others.deleContact()">删除</li>
+    <li class="upico" ng-click="others.moveUp()">上移</li>
+    <li class="downico" ng-click="others.moveDown()">下移</li>
+</ul>
+<div class="tableMain">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td></td>
+            <td>联系人</td>
+            <td>商务电话</td>
+            <td>移动电话</td>
+            <td>QQ</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in items">
+            <td>
+                <input type="radio"   ng-click="others.selected(item)" name="select">
+            </td>
+            <td>
+                <input type="text" ng-model="item.name">
+            </td>
+            <td>
+                <input type="text" ng-model="item.age" >
+            </td>
+            <td>
+                <input type="text" ng-model="item.sex" >
+            </td>
+            <td>
+                <input type="text" ng-model="item.address" >
+            </td>
+            <td>
+                <button class="btn btn-sm btn-info" ng-click="others.moveUp(item)">上移</button>
+                <button class="btn btn-sm btn-info" ng-click="others.moveDownBtn(item)">下移</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<script>
+    angular.module('myapp',[]).controller('myCtrl',function($scope,$http){
+        $scope.items=[];
+        $http.get('../lib/data.json').success(function(d){
+            $scope.items = d.list.data.datas;
+        });
+        $scope.others={
+            selectedItem:{},
+            selected:function(item){
+                this.selectedItem=item;
+            },
+            //增加
+            addContact:function(){
+                $scope.items.push({
+                    name:'',
+                    age:'',
+                    sex:'',
+                    address:'',
+                    otherSKYPE:''
+                });
+            },
+            //刪除；
+            deleContact:function(){
+                var index=$scope.items.indexOf(this.selectedItem);
+                if(index>=0){
+                    $scope.items.splice(index,1);
+                }
+            },
+            //上移；
+            moveUp:function(){
+                var index=$scope.items.indexOf(this.selectedItem);
+                var tmp=angular.copy($scope.items[index-1]);
+                if(index==0){
+                    alert('已經是第一個了，不能再向上移動了！');
+                    return ;
+                }
+                $scope.items[index-1]=$scope.items[index];
+                $scope.items[index]=tmp;
+
+            },
+            //下移；
+            moveDown:function(){
+                var index=$scope.items.indexOf(this.selectedItem);
+
+                if(index==$scope.items.length-1){
+                    alert('已經是最後一個了，不能再向下移動了！');
+                    return ;
+                }
+                var tmp=angular.copy($scope.items[index+1]);
+                $scope.items[index+1]=$scope.items[index];
+                $scope.items[index]=tmp;
+            },
+
+            moveDownBtn:function(item){
+                var index=$scope.items.indexOf(item);
+
+                if(index==$scope.items.length-1){
+                    alert('已經是最後一個了，不能再向下移動了！');
+                    return ;
+                }
+                var tmp=angular.copy($scope.items[index+1]);
+                $scope.items[index+1]=$scope.items[index];
+                $scope.items[index]=tmp;
+            }
+        }
+    })
+</script>
+</body>
+</html>

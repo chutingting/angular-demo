@@ -1,0 +1,11 @@
+
+
+<ul>
+    <li ng-click="changeMenus(item);"
+        style="border: 1px solid red;float: left;margin-left: 10px;list-style:none;padding:2px 6px;"
+        class="{{item.bgc}}"
+        ng-repeat="item in $root.menus">
+        {{item.name}}
+        <button ng-click="remove(item);">x</button>
+    </li>
+</ul>

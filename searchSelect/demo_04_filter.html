@@ -3,55 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <style>
-        .inputSel{width:200px;height: 26px;border:1px solid #ddd;text-indent: 10px;}
-        #triangle-down {
-            width: 0;
-            height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-top: 9px solid #999;
-            position: absolute;
-            right: 0;top:10px;
-        }
-
-        .rotateUp {
-            transform:rotate(180deg);
-            transition-duration: 0.5s;
-            transition-timing-function: ease;
-        }
-        .rotateDown {
-             transform:rotate(0deg);
-             transition-duration: 0.5s;
-             transition-timing-function: ease;
-        }
-
-        .search{
-            border: 1px solid #ccc;
-            border-top: 0px;width:202px;
-            box-shadow: 1px 1px 3px #ededed;
-        }
-        table{
-            border-collapse: collapse;
-
-        }
-        table tr:hover{background: #eee;}
-
-        .saveBtn{
-            width: 40px;
-            line-height: 20px;
-            border: none;
-            background: #31b0d5;
-            color: #fff;
-            border-radius: 4px;
-        }
-        .closeBtn{
-            background: #fff;
-            color: #000;
-            border:1px solid #cccccc;
-            margin-right: 4px;
-        }
-    </style>
+    <link rel="stylesheet" href="css.css">
 </head>
 <body>
 
@@ -78,6 +30,10 @@
             return d.datas;
         };
 
+       /* $scope.searchData = function(d){
+            return d;
+        };*/
+
         $scope.parameterData = {
             name : "name",
             dataStructure :"datas"
@@ -100,7 +56,7 @@
                         '<input type="text" class="inputSel" ng-model="name" ng-keyup="inputData()"> ' +
                         '<div id="triangle-down" class="{{clsName}}"></div></div>' +
                         '<div class="search" ng-show="searchModalShow">' +
-                        '<table style="width:200px;"> <tr ng-repeat="item in list" style="line-height: 24px;" ng-click="ckOne(item)"> <td><input type="checkbox"  ng-model="item.ck"></td> <td>{{item.searchNameShow}}</td> </tr> </table>' +
+                        '<table style="width:200px;"> <tr ng-repeat="item in list | filter : name " style="line-height: 24px;" ng-click="ckOne(item)"> <td><input type="checkbox"  ng-model="item.ck"></td> <td>{{item.searchNameShow}}</td> </tr> </table>' +
                         '<div style="padding:10px;text-align: right;">' +
                         '<button ng-click="close()" class="saveBtn closeBtn">关闭</button><button ng-click="save()" class="saveBtn">确定</button></div> ' +
                         '</div></div>',
@@ -108,7 +64,8 @@
                 "getUrl":"=",
                 "analysis":"=",
                 "getSelData":"=",
-                "parameter" : "="
+                "parameter" : "=",
+                "searchData" : "="
             },
             controller:function($scope,$http){
                 $scope.list = [];
@@ -141,8 +98,16 @@
                 }
                 getData();
 
-
                 $scope.inputData = function(){
+                    if(document.getElementsByTagName('tr').length != 0 && $scope.name != ""){
+                        $scope.searchModalShow = true;
+                        $scope.clsName = "rotateUp";
+                    }else{
+                        $scope.searchModalShow = false;
+                        $scope.clsName = "rotateDown";
+                    }
+                };
+                /*$scope.inputData = function(){
                     if($scope.name != ""){
                         var datas = [],obj={};
 
@@ -154,7 +119,8 @@
                             }
                         }
                         obj[dataStructure] = datas;
-                        $scope.list =  $scope.analysis(obj);
+                        //$scope.list =  $scope.analysis(obj);
+                        $scope.list = $scope.searchData(datas);
 
                         if(datas.length != 0){
                             $scope.searchModalShow = true;
@@ -168,7 +134,7 @@
                         $scope.searchModalShow = false;
                         $scope.clsName = "rotateDown";
                     }
-                };
+                };*/
 
 
                 $scope.ckOne = function(item){

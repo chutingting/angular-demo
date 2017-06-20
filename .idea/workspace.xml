@@ -21,37 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="demo.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/searchSelect/demo.html">
+      <file leaf-file-name="demo.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tableUpDown/demo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo_04.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/searchSelect/demo_04.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.79506934">
-              <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
-              <folding>
-                <marker date="1492764858000" expanded="true" signature="2297:2325" placeholder="..." />
-                <marker date="1492764858000" expanded="true" signature="2368:2400" placeholder="..." />
-                <marker date="1492764858000" expanded="true" signature="2710:2722" placeholder="..." />
-                <marker date="1492764858000" expanded="true" signature="2761:2779" placeholder="..." />
-                <marker date="1492764858000" expanded="true" signature="2946:2977" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/searchSelect/data.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.321428">
-              <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.75562704">
+              <caret line="129" column="6" selection-start-line="129" selection-start-column="6" selection-end-line="129" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -69,13 +43,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/angular_tree/demo02/index.html" />
-        <option value="$PROJECT_DIR$/angular_tree/demo02/demo02.js" />
-        <option value="$PROJECT_DIR$/angular_tree/demo/d.html" />
-        <option value="$PROJECT_DIR$/angular_tree/demo/app.js" />
-        <option value="$PROJECT_DIR$/angular_tree/demo/a.html" />
-        <option value="$PROJECT_DIR$/angular_tree/demo/data.json" />
-        <option value="$PROJECT_DIR$/angular_tree/angular-tree-master/demo.html" />
         <option value="$PROJECT_DIR$/angular_tree/angular-tree-master/jquery-checktree.js" />
         <option value="$PROJECT_DIR$/translate/demo02/index.html" />
         <option value="$PROJECT_DIR$/translate/demo/cn.json" />
@@ -117,9 +84,16 @@
         <option value="$PROJECT_DIR$/searchSelect/sel.html" />
         <option value="$PROJECT_DIR$/searchSelect/demo.html" />
         <option value="$PROJECT_DIR$/searchSelect/demo_02.html" />
-        <option value="$PROJECT_DIR$/searchSelect/demo_03.html" />
         <option value="$PROJECT_DIR$/searchSelect/data.json" />
+        <option value="$PROJECT_DIR$/searchSelect/data_02.json" />
+        <option value="$PROJECT_DIR$/searchSelect/css.css" />
+        <option value="$PROJECT_DIR$/searchSelect/demo_05.html" />
         <option value="$PROJECT_DIR$/searchSelect/demo_04.html" />
+        <option value="$PROJECT_DIR$/searchSelect/searchSel.directive.js" />
+        <option value="$PROJECT_DIR$/searchSelect/demo_03.html" />
+        <option value="$PROJECT_DIR$/searchSelect/demo_06_jq.html" />
+        <option value="$PROJECT_DIR$/../name/bo2.html" />
+        <option value="$PROJECT_DIR$/tableUpDown/demo.html" />
       </list>
     </option>
   </component>
@@ -162,38 +136,52 @@
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular案例" />
+              <option name="myItemId" value="angular_demo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular案例" />
+              <option name="myItemId" value="angular_demo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular案例" />
+              <option name="myItemId" value="angular_demo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular案例" />
+              <option name="myItemId" value="angular_demo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular案例" />
+              <option name="myItemId" value="angular_demo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="searchSelect" />
+              <option name="myItemId" value="tableUpDown" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="anTable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -201,7 +189,7 @@
     <property name="settings.editor.splitter.proportion" value="0.24590164" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/原型/新后台原型图" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/NewBackSys" />
     <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
@@ -322,108 +310,62 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/angularTableTree/demo01/demo01.css">
+    <entry file="file://$PROJECT_DIR$/searchSelect/demo_05.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77097905">
-          <caret line="70" column="166" selection-start-line="70" selection-start-column="166" selection-end-line="70" selection-end-column="166" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-tree-dnd-master/src/filter/angular-tree-dnd-filter.js">
+    <entry file="file://$PROJECT_DIR$/../cxy/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-tree-dnd-master/demo/list/list.html">
+    <entry file="file://$PROJECT_DIR$/searchSelect/searchSel.directive.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="72" column="53" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="53" />
+          <folding>
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-tree-dnd-master/demo/basic/basic-toolbar.js">
+    <entry file="file://$PROJECT_DIR$/searchSelect/sel.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <caret line="17" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-tree-dnd-master/demo/basic/basic-frame.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36998254">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-tree-dnd-master/demo/basic/basic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.033158813">
-          <caret line="1" column="28" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-tree-dnd-master/demo/framework/demo-framework.js">
+    <entry file="file://$PROJECT_DIR$/searchSelect/data_02.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="10" selection-start-line="95" selection-start-column="10" selection-end-line="95" selection-end-column="10" />
+          <caret line="0" column="31456" selection-start-line="0" selection-start-column="31456" selection-end-line="0" selection-end-column="31456" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-tree-dnd-master/dist/ng-tree-dnd.debug.js">
+    <entry file="file://$PROJECT_DIR$/searchSelect/data.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="3356" column="66" selection-start-line="3356" selection-start-column="66" selection-end-line="3356" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-tree-dnd-master/demo/basic/basic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1780366">
-          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/angular-treetable-master/example/example.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angularTableTree/demo01/demo01.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7154742">
-          <caret line="125" column="14" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular_demo/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.26003492">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translate/demo02/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translate/demo02/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="39" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular_tree/ztreeNg/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -595,13 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anTable/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.642857">
-          <caret line="29" column="17" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/block.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3323486">
@@ -635,21 +570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.555555">
           <caret line="19" column="35" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/searchSelect/sel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.464286">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -657,13 +577,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-33.357143">
           <caret line="159" column="43" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
-          <folding>
-            <marker date="1492740234000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1492740234000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1492740234000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1492740234000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1492740234000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchSelect/data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7365177">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/fuzzySearch/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18611522">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/fuzzySearch/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.25885978">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchSelect/css.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="1" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchSelect/data_02.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.57717">
+          <caret line="0" column="31456" selection-start-line="0" selection-start-column="31456" selection-end-line="0" selection-end-column="31456" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchSelect/demo_03.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53359175">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../需求库/param.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.3913713">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchSelect/demo_04_filter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26348227">
+          <caret line="44" column="27" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -671,43 +642,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/searchSelect/demo_03.html">
+    <entry file="file://$PROJECT_DIR$/../cxy/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42372882">
-          <caret line="151" column="27" selection-start-line="151" selection-start-column="27" selection-end-line="152" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.17565486">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchSelect/sel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58551615">
+          <caret line="20" column="0" selection-start-line="19" selection-start-column="10" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <marker date="1492745510000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1492745510000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1492745510000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1492745510000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1492745510000" expanded="true" signature="-1:-1" placeholder="..." />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/searchSelect/data.json">
+    <entry file="file://$PROJECT_DIR$/searchSelect/searchSel.directive.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.321428">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.44903988">
+          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+          <folding>
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1493014244000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchSelect/demo_05.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/searchSelect/demo_04.html">
+    <entry file="file://$PROJECT_DIR$/anTable/demo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79506934">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
-          <folding>
-            <marker date="1492764858000" expanded="true" signature="2297:2325" placeholder="..." />
-            <marker date="1492764858000" expanded="true" signature="2368:2400" placeholder="..." />
-            <marker date="1492764858000" expanded="true" signature="2710:2722" placeholder="..." />
-            <marker date="1492764858000" expanded="true" signature="2761:2779" placeholder="..." />
-            <marker date="1492764858000" expanded="true" signature="2946:2977" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.4329738">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tableUpDown/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75562704">
+          <caret line="129" column="6" selection-start-line="129" selection-start-column="6" selection-end-line="129" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>

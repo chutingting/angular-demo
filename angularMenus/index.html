@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="app.css" rel="stylesheet" type="text/css" />
+
+    <script src="resource/js/angular.js"></script>
+    <script src="resource/js/angular-ui-router.js"></script>
+    <script src="resource/js/ocLazyLoad.js"></script>
+
+    <script src="app.js"></script>
+
+    <script src="config/router.config.js"></script>
+    <script src="config/oclazyload.config.js"></script>
+
+    <script src="services/core.js"></script>
+
+    <script src="resource/core.js"></script>
+
+    <script src="directives/navi/navi.directive.js"></script>
+    <script src="directives/toolbar/toolbar.directive.js"></script>
+</head>
+<body>
+
+    <!--<select class="width220" ng-model="ugwNum" ng-options="m.code as m.name for m in uGws"></select>-->
+
+    <div style="float: left;border: 1px solid red;width: 20%;height: 600px;">
+        <navi></navi>
+    </div>
+    <div style="float: left;border: 1px solid red;width:70%;height: 600px;margin-left: 20px;">
+        <div style="clear: both;height: 40px;border: 1px solid black">
+            <tool-bar></tool-bar>
+        </div>
+        <div style="clear: both;height: 550px;margin-top: 10px;border: 1px solid blue;">
+            <div ui-view></div>
+        </div>
+    </div>
+
+
+</body>
+</html>
