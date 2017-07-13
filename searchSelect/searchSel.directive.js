@@ -7,7 +7,7 @@ app.directive("searchSelect",function(){
         '<input type="text" class="inputSel" ng-model="name" ng-keyup="inputData()"> ' +
         '<div id="triangle-down" class="{{clsName}}"></div></div>' +
         '<div class="search" ng-show="searchModalShow">' +
-        '<table style="width:200px;"> <tr ng-repeat="item in list" style="line-height: 24px;" ng-click="ckOne(item)"> <td><input type="checkbox"  ng-model="item.ck"></td> <td>{{item.searchNameShow}}</td> </tr> </table>' +
+        '<table style="width:200px;"> <tr ng-repeat="item in list" style="line-height: 24px;" ng-click="ckOne(item)" title="{{item.searchNameShow}}"> <td><input type="checkbox"  ng-model="item.ck"></td> <td class="tdText">{{item.searchNameShow}}</td> </tr> </table>' +
         '<div style="padding:10px;text-align: right;">' +
         '<button ng-click="close()" class="saveBtn closeBtn">关闭</button><button ng-click="save()" class="saveBtn">确定</button></div> ' +
         '</div></div>',
@@ -51,6 +51,11 @@ app.directive("searchSelect",function(){
 
 
             $scope.inputData = function(){
+
+                for(var i=0;i<$scope.list.length;i++){
+                    $scope.list[i].ck = false
+                }
+
                 if($scope.name != ""){
                     var datas = [],obj={};
 
@@ -76,29 +81,29 @@ app.directive("searchSelect",function(){
                     $scope.list = dataList;
                     $scope.searchModalShow = false;
                     $scope.clsName = "rotateDown";
-                    for(var i=0;i<$scope.list.length;i++){
-                        $scope.list[i].ck = false
-                    }
                 }
             };
 
 
             $scope.ckOne = function(item){
-                item.ck = !item.ck;
+              //  item.ck = !item.ck;
             };
             $scope.save = function(){
-                var res = [];
+                var res = [],inputName = [];
                 for(var i=0;i<$scope.list.length;i++){
                     if($scope.list[i].ck){
                         res.push($scope.list[i]);
+                        inputName.push($scope.list[i].searchNameShow)
                     }
                 }
                 if(res.length == 0){
                     alert("请选择一条数据!");
                     return;
                 }
-
                 $scope.getSelData(res);
+
+                $scope.name = inputName.join(',');
+                $scope.searchModalShow = false;
             };
             $scope.close = function(){
                 $scope.searchModalShow = false;
