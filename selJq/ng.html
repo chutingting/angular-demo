@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>自定义多选下拉框-jq22.com</title>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../lib/angular.js"></script>
+    <style>
+        body,div,p,img,a,table,tr,td,h1,h2,h3,h4,ul,li,dl,dd,dt,input,form,video,b,em {
+            padding:0;
+            margin:0;
+        }
+        body {
+            color:#333;
+            font-family:"Microsoft YaHei";
+            height:100%;
+            font-size:12px
+        }
+        a {
+            text-decoration:none;
+        }
+        ul,li {
+            list-style-type:none;
+        }
+        img {
+            border:0;
+            display:block;
+            width:100%;
+        }
+        em,i {
+            font-style:normal;
+        }
+        .over {
+            overflow:hidden;
+        }
+        .fl {
+            float:left;
+        }
+        .fr {
+            float:right;
+        }
+        .re {
+            position:relative;
+        }
+        .fx {
+            position:fixed;
+        }
+        /* 滚动条样式 */::-webkit-scrollbar {
+                       width:6px;
+                       height:6px;
+                   }
+        ::-webkit-scrollbar-thumb {
+            border-radius:3px;
+            -moz-border-radius:3px;
+            -webkit-border-radius:3px;
+            background-color:#c3c3c3;
+        }
+        ::-webkit-scrollbar-track {
+            background-color:transparent;
+        }
+        /* 滚动条样式End */
+
+        .chooseZh {
+            padding-top:30px;
+        }
+        .right {
+            width:80%;
+            border:1px solid #e6e6e6;
+            border-radius:5px;
+            padding:5px 0 0;
+            margin:auto;
+        }
+        .defaultSpan {
+            display:inline-block;
+            height:26px;
+            line-height:26px;
+            margin-bottom:5px;
+            margin-left:5px;
+        }
+        .groupSpan {
+            float:left;
+            width:90%;
+            margin-left:5px;
+            overflow-x:hidden;
+            overflow-y:auto;
+            max-height:150px;
+        }
+        .item {
+            background:aliceblue;
+            border-radius:5px;
+            padding:5px;
+            margin-right:5px;
+            margin-bottom:5px;
+        }
+        .delG {
+            width:15px;
+            height:15px;
+            margin-left:3px;
+            border:1px solid #e6e6e6;
+            border-radius:50%;
+            background-color:#f2f2f2;
+        }
+        .clear {
+            width:15px;
+            height:15px;
+            margin-right:5px;
+            margin-top:6px;
+        }
+        .pull {
+            width:15px;
+            height:15px;
+            margin-top:6px;
+            margin-right:5px;
+        }
+        .pullItem {
+            overflow-x:hidden;
+            overflow-y:auto;
+            width:80%;
+            margin:auto;
+            max-height:150px;
+            margin-bottom:10px;
+            border:1px solid #e6e6e6;
+            border-top:none;
+            border-radius:0 0 5px 5px;
+        }
+        .pullItem p {
+            height:30px;
+            line-height:30px;
+            padding:0 5px;
+        }
+        .pullItem p:HOVER {
+            background-color:cornflowerblue;
+            color:white;
+        }
+    </style>
+</head>
+<body  ng-app="app">
+
+<div ng-controller="ctr">
+<div class="chooseZh">
+    <div class="right" id="zhPull">
+        <div class="over">
+            <span id="gDefault" class="defaultSpan"> 请选择群 </span>
+            <span id="gSpan" class="groupSpan over" style="display: none;"> </span>
+            <span class="fr"> <img id="pull" class="pull" src="http://www.jq22.com/tp/0b3ecedf-0c68-4543-9cf7-65a5619fc80b.png"> </span>
+            <span class="fr"> <img id="clearG" class="clear" style="display: none;" src="http://www.jq22.com/tp/a3d67479-1508-48b2-898f-548eaf9d8640.png"> </span>
+        </div>
+    </div>
+</div>
+
+<div id="pullItem" class="pullItem" style="display: none;">
+    <p ng-repeat="item in list" id="g_{{item.id}}" ng-click="groupChoose(item.id,item.name)">{{item.name}}</p>
+</div>
+
+</div>
+<script>
+    angular.module('app',[]).controller('ctr',function ($scope,$compile) {
+
+        $scope.list = [];
+        //获取下拉列表中应有的数据
+        function getData() {
+            //这里应该是从后台请求数据，这里就不写了，自己造测试数据了
+            var list = [{
+                id: "abc1",
+                name: "item1"
+            },
+                {
+                    id: "abc2",
+                    name: "item2"
+                },
+                {
+                    id: "abc3",
+                    name: "item3"
+                },
+                {
+                    id: "abc4",
+                    name: "item4"
+                },
+                {
+                    id: "abc5",
+                    name: "item5"
+                }];
+            //根据获取到的数据动态生成下拉选项布局
+            addpendGHtml(list);
+        }
+
+        //添加群弹层中下拉列表数据
+            function addpendGHtml(data) {
+                $scope.list = data;
+            }
+        //下拉列表群选中事件
+        $scope.groupChoose = function (id, name) {
+            $("#gDefault").hide();
+            $("#gSpan").show();
+            $("#clearG").show();
+            var box = [];
+            box[0] = '<div id="' + id + '" upName="' + name + '"  name="zhChecked" class="item over fl">';
+            box[1] = '<span class="fl">' + name + '</span>';
+            box[2] = '<span class="fl">';
+            box[3] = '<img class="delG" ng-click="zhDel(\'' + id + '\',\'' + name + '\',event)" src="http://www.jq22.com/tp/a3d67479-1508-48b2-898f-548eaf9d8640.png" />';
+            box[4] = '</span></div>';
+           // $("#gSpan").append(box.join(""));
+
+
+            var template = angular.element(box.join(""));
+            var mobileDialogElement = $compile(template)($scope);
+            angular.element('#gSpan').append(mobileDialogElement);
+
+
+
+            $(".groupSpan").animate({
+                    scrollTop: $(".groupSpan").height()
+                },
+                100);
+
+            $("#g_" + id).remove();
+        };
+        //选中群删除事件
+        $scope.zhDel = function (idd, namee) {
+            //$event.stopPropagation();
+            $("#" + idd).remove();
+            /*var box = [];
+            box[0] = '<p id="g_' + id + '" ng-click="groupChoose(\'' + id + '\',\'' + name + '\')" >' + name + '</p>';
+            $("#pullItem").append(box.join(""));*/
+            $scope.list.push({id:idd,name:namee})
+            var size = $('#gSpan').children().length;
+            if (size <= 0) {
+                $("#gDefault").show();
+                $("#gSpan").hide();
+                $("#clearG").hide();
+            }
+        };
+        //选中群清空事件
+        $("#clearG").click(function(e) {
+            e.stopPropagation(); //阻止冒泡
+            getData();
+            $("#gSpan").empty();
+            $("#gSpan").hide();
+            $("#clearG").hide();
+            $("#gDefault").show();
+        });
+        //选择群下拉列表显示隐藏事件
+        var isShow = true;
+
+        $("#zhPull").click(function() {
+            if (isShow) {
+                isShow = false;
+                $("#pull").attr("src", "http://www.jq22.com/tp/57991754-ce85-4738-9562-64145ea03b1b.png");
+                $(".chooseZh").css("margin-bottom", "0");
+                $(".right").css({
+                    "border-bottom": "none",
+                    "border-radius": "5px 5px 0 0"
+                });
+            } else {
+                isShow = true;
+                $("#pull").attr("src", "http://www.jq22.com/tp/0b3ecedf-0c68-4543-9cf7-65a5619fc80b.png");
+                $(".chooseZh").css("margin-bottom", "10px");
+                $(".right").css({
+                    "border": "1px solid #e6e6e6",
+                    "border-radius": "5px"
+                });
+            }
+            $("#pullItem").toggle();
+        });
+
+
+        getData();
+
+        
+    });
+   
+
+
+
+</script>
+
+</body>
+</html>

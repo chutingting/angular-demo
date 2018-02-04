@@ -52,14 +52,9 @@ app.directive("searchSelect",function(){
             $scope.inputData = function(){
 
 
-                /*for(var i=0;i<$scope.list.length;i++){
+                for(var i=0;i<$scope.list.length;i++){
                     $scope.list[i].ck = false;
-                }*/
-                /*for(var i=0;i<$scope.list.length;i++){
-                    if($scope.name.indexOf($scope.list[i].name)){
-                        $scope.list[i].ck = false;
-                    }
-                }*/
+                }
 
                 if($scope.name != ""){
                     var datas = [],obj={};
